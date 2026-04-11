@@ -1,26 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --bg2: #f7f6f3;
+  --bg3: #f0ede8;
+  --txt: #1a1916;
+  --txt2: #6b6860;
+  --txt3: #9e9b96;
+  --acc: #d4720a;
+  --acc2: #fdf0e0;
+  --acc3: #fff7ed;
+  --bdr: #e5e2db;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
+  color: var(--txt);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+.font-display {
+  font-family: "Sora", sans-serif;
+}
+
+/* Prose for long descriptions */
+.prose-content h1,
+.prose-content h2 {
+  font-family: "Sora", sans-serif;
+  font-weight: 600;
+  color: var(--txt);
+  margin-bottom: 0.75rem;
+  margin-top: 1rem;
+}
+.prose-content h2 {
+  font-size: 1.1rem;
+}
+.prose-content p {
+  font-size: 0.9rem;
+  color: var(--txt2);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+.prose-content ul,
+.prose-content ol {
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--txt2);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+.prose-content li {
+  margin-bottom: 0.2rem;
+}
+.prose-content a {
+  color: var(--acc);
+  text-decoration: underline;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bdr);
+  border-radius: 3px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+.animate-slide {
+  animation: slideUp 0.4s ease forwards;
+}
+.skeleton {
+  background: var(--bdr);
+  border-radius: 6px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Coupon dashed border */
+.coupon-dashed {
+  border: 2px dashed var(--acc);
+}
+
+button {
+  cursor: pointer;
 }

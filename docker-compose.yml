@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cashmoj_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cashmoj
+      POSTGRES_USER: eswar
+      POSTGRES_PASSWORD: eswar0551
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eswar -d cashmoj"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

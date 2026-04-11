@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password      String?
+  name          String
+  role          String   @default("user")
+  provider      String   @default("local")
+  firebaseUid   String?  @unique
+  avatarUrl     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  favorites Favorite[]
+  ratings   Rating[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  icon        String   @default("🏷️")
+  description String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  stores  Store[]
+  deals   Deal[]
+  coupons Coupon[]
+}
+
+model Store {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  logo        String   @default("🛒")
+  logoUrl     String?
+  website     String?
+  affLink     String?
+  shortDesc   String
+  longDesc    String
+  active      Boolean  @default(true)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  deals       Deal[]
+  coupons     Coupon[]
+}
+
+model Deal {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String
+  discount    String
+  affLink     String
+  verified    Boolean   @default(false)
+  featured    Boolean   @default(false)
+  active      Boolean   @default(true)
+  expiresAt   DateTime?
+  clicks      Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  favorites   Favorite[]
+  ratings     Rating[]
+}
+
+model Coupon {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String
+  code        String
+  discount    String
+  affLink     String
+  verified    Boolean   @default(false)
+  featured    Boolean   @default(false)
+  active      Boolean   @default(true)
+  expiresAt   DateTime?
+  clicks      Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  favorites   Favorite[]
+  ratings     Rating[]
+}
+
+model Media {
+  id           String   @id @default(cuid())
+  filename     String   @unique
+  originalName String
+  mimeType     String
+  size         Int
+  width        Int?
+  height       Int?
+  url          String
+  uploadedById String?
+  createdAt    DateTime @default(now())
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  dealId    String?
+  couponId  String?
+  createdAt DateTime @default(now())
+
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deal      Deal?   @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  coupon    Coupon? @relation(fields: [couponId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  value     Int
+  userId    String
+  dealId    String?
+  couponId  String?
+  createdAt DateTime @default(now())
+
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deal      Deal?   @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  coupon    Coupon? @relation(fields: [couponId], references: [id], onDelete: Cascade)
+}
