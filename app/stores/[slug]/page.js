@@ -43,7 +43,7 @@ export default async function StorePage({ params, searchParams }) {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Stores', href: '/stores' }, { label: store.name }]} />
 
       {/* Store Hero */}

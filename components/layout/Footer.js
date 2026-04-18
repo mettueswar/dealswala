@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="font-display font-semibold text-lg text-[#1a1916] mb-3">
-              Deal<span className="text-[#d4720a]">Wala</span>
+              Cash<span className="text-[#d4720a]">Moj</span>
             </div>
             <p className="text-sm text-[#6b6860] leading-relaxed">
               India's trusted source for verified coupons and deals from 500+ top brands.
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-[#e5e2db] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-[#9e9b96]">© {new Date().getFullYear()} DealWala. All rights reserved.</p>
+          <p className="text-xs text-[#9e9b96]">© {new Date().getFullYear()} CashMoj. All rights reserved.</p>
           <p className="text-xs text-[#9e9b96]">We may earn commission from qualifying purchases.</p>
         </div>
       </div>

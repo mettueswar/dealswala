@@ -31,7 +31,7 @@ export default function Header() {
       <header className="bg-white border-b border-[#e5e2db] sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 h-[60px] flex items-center gap-4">
           <Link href="/" className="font-display font-semibold text-xl text-[#1a1916] shrink-0">
-            Deal<span className="text-[#d4720a]">Wala</span>
+            Cash<span className="text-[#d4720a]">Moj</span>
           </Link>
 
           <form onSubmit={handleSearch} className="flex-1 max-w-md relative">

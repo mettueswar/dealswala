@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import OfferModal from '@/components/modals/OfferModal';
 import { isExpired, expiresLabel } from '@/lib/utils';
+import { TimerIcon } from 'lucide-react';
 
 export default function OfferCard({ item, type }) {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function OfferCard({ item, type }) {
             {item.discount}
           </span>
           {expLabel && (
-            <span className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-md">{expLabel}</span>
+            <span className="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-0.5 rounded-md"><TimerIcon className="w-3 h-3 mr-1 inline" /> {expLabel}</span>
           )}
           {item.verified && (
             <span className="absolute bottom-2 right-2 bg-green-100 text-green-800 font-display font-semibold text-[10px] px-2 py-0.5 rounded-md">
