@@ -45,14 +45,16 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { title, description, discount, affLink, storeId, categoryId, expiresAt, verified, featured, active } = body;
+    const { title, description, discount, affLink, imageUrl, storeId, categoryId, expiresAt, verified, featured, active } = body;
     if (!title || !description || !discount || !affLink || !storeId)
       return apiError('Missing required fields');
 
     const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now();
     const deal = await prisma.deal.create({
       data: {
-        title, slug, description, discount, affLink, storeId,
+        title, slug, description, discount, affLink,
+        imageUrl:    imageUrl    || null,
+        storeId,
         categoryId:  categoryId  || null,
         expiresAt:   expiresAt   ? new Date(expiresAt) : null,
         verified:  !!verified,

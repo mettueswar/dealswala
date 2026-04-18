@@ -22,7 +22,7 @@ export default async function CouponsPage({ searchParams }) {
   const [total, coupons] = await Promise.all([
     prisma.coupon.count({ where }),
     prisma.coupon.findMany({
-      where, include: { store: { select: { id: true, name: true, slug: true, logo: true } } },
+      where, include: { store: { select: { id: true, name: true, slug: true, logoUrl: true } } },
       orderBy: [{ featured: 'desc' }, { createdAt: 'desc' }],
       skip: (page - 1) * PAGE_SIZE, take: PAGE_SIZE,
     }),
@@ -48,7 +48,7 @@ export default async function CouponsPage({ searchParams }) {
         <EmptyState icon="🎟️" title="No coupons yet" desc="Check back soon — new coupons are added daily." />
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {coupons.map(c => <OfferCard key={c.id} item={c} type="coupon" />)}
           </div>
           <Pagination total={total} page={page} pageSize={PAGE_SIZE} />

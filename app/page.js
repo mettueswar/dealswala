@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import OfferCard from '@/components/cards/OfferCard';
 import StoreCard from '@/components/cards/StoreCard';
 
-const offerInclude = { store: { select: { id: true, name: true, slug: true, logo: true } } };
+const offerInclude = { store: { select: { id: true, name: true, slug: true, logoUrl: true } } };
 
 export default async function HomePage() {
   const [featuredDeals, featuredCoupons, featuredStores, categories] = await Promise.all([

@@ -66,6 +66,7 @@ model Deal {
   description String
   discount    String
   affLink     String
+  imageUrl    String?
   verified    Boolean   @default(false)
   featured    Boolean   @default(false)
   active      Boolean   @default(true)

@@ -22,7 +22,7 @@ export default async function DealsPage({ searchParams }) {
   const [total, deals] = await Promise.all([
     prisma.deal.count({ where }),
     prisma.deal.findMany({
-      where, include: { store: { select: { id: true, name: true, slug: true, logo: true } } },
+      where, include: { store: { select: { id: true, name: true, slug: true, logoUrl: true } } },
       orderBy: [{ featured: 'desc' }, { createdAt: 'desc' }],
       skip: (page - 1) * PAGE_SIZE, take: PAGE_SIZE,
     }),
@@ -49,7 +49,7 @@ export default async function DealsPage({ searchParams }) {
         <EmptyState icon="🏷️" title="No deals yet" desc="Check back soon — new deals are added daily." />
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {deals.map(d => <OfferCard key={d.id} item={d} type="deal" />)}
           </div>
           <Pagination total={total} page={page} pageSize={PAGE_SIZE} />
