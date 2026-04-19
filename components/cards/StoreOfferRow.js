@@ -39,13 +39,13 @@ export default function StoreOfferRow({ item, type }) {
       ${expired ? "opacity-60 border-[#e5e2db]" : "border-[#e5e2db] hover:border-[#d4720a] hover:shadow-md"}`}
     >
       {/* ── Main row ── */}
-      <div className="flex items-stretch min-h-[88px]">
+      <div className="flex items-stretch min-h-[120px]">
         {/* Discount column */}
         <div
           className="w-20 sm:w-24 shrink-0 flex items-center justify-center px-3 py-4
           bg-gradient-to-b from-[#fff7ed] to-[#fef3e2]"
         >
-          <span className="font-display font-bold text-[#d4720a] text-center leading-[1.15] text-base sm:text-lg break-words">
+          <span className="font-display font-bold text-[#d4720a] text-center leading-[1.15] text-lg sm:text-2xl break-words">
             {item.discount}
           </span>
         </div>
@@ -55,7 +55,7 @@ export default function StoreOfferRow({ item, type }) {
 
         {/* Middle — title + expand toggle */}
         <div className="flex-1 min-w-0 px-4 py-3 flex flex-col justify-center">
-          <h3 className="font-display font-semibold text-sm sm:text-base text-[#1a1916] leading-snug mb-1.5 line-clamp-2">
+          <h3 className="font-display font-semibold text-lg sm:text-2xl text-[#1a1916] leading-snug mb-1.5 line-clamp-2">
             {item.title}
           </h3>
 
